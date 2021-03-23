@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import './App.scss';
+import AppRouting from "./App-routing";
 
 function App() {
+
+  // functional component constructor;
+  useEffect(():void => {
+
+    // remove console log, warn, error in production mode;
+    if (process.env.REACT_APP_STAGE === 'PROD') {
+      console.log = function(arg:any) {};
+      console.warn = function(arg:any) {};
+      console.error = function(arg:any) {};
+    }
+  }, []);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppRouting />
     </div>
   );
+  
 }
 
 export default App;
